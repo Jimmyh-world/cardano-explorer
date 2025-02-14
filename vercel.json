@@ -3,6 +3,10 @@
   "cleanUrls": true,
   "builds": [
     {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "**/*.html",
       "use": "@vercel/static"
     },
@@ -19,6 +23,10 @@
       "use": "@vercel/static"
     }
   ],
+  "env": {
+    "BLOCKFROST_PROJECT_ID": "@blockfrost-project-id",
+    "BLOCKFROST_API_URL": "@blockfrost-api-url"
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -82,6 +90,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/pages/:path*", "destination": "/pages/:path*" },
     { "source": "/:path*", "destination": "/:path*" }
   ]
